@@ -1,3 +1,6 @@
+# Day 1 Plan
+![Day 1 Plan](./public/wireframe-plan.JPG)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
