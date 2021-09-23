@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import PokeList from './PokeList.js'
 import request from 'superagent'
 
+
+
 export default class SearchPage extends Component {
     state = {
         dataArr: [],
         searchQuery: '',
-        searchOrder: 'ascending',
+        searchOrder: 'asc',
         isLoading: false
     }
 
@@ -20,14 +22,22 @@ export default class SearchPage extends Component {
 
 
     // handleSearch Method
-        // takes in e
+    // takes in e
+    handleSearch = (e) =>{
         // updates searchOrder state to e.target.value
-
+        this.setState({searchQuery: e.target.value})
+        console.log(this.state.searchQuery)
+    }
+    
+    
     // handleSearchOrder method
-        // takes in e
+    // takes in e
+    handleSearchOrder = (e) =>{
         // updates searchOrder state to e.target.value
+        this.setState({searchOrder: e.target.value})
+    }
 
-        
+
     // componentDidMount method
     componentDidMount = () => {
         const searchQuery = this.state.searchQuery
@@ -43,28 +53,31 @@ export default class SearchPage extends Component {
         // updates isLoading state to true
         this.setState({isLoading: true})
 
-        // try to await a response on an endpoint request
-        const response = await request.get(/* endpoint here*/)
-
+        const response = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon=${this.state.searchQuery}&direction=${this.state.searchOrder}`)
+            
         // update dataArr state
-        this.setState({dataArr: [...response.body]})
-
+        this.setState({dataArr: [...response.body.results]})
         // update isLoading state to false
         this.setState({isLoading: false})
+
+        console.log('isLoading state leaving function', this.state.isLoading)
+        console.log('dataArr state leaving function', this.state.dataArr)
+        console.log('searchOrder state leaving function', this.state.searchOrder)
     }
-    
+
+
+
+
     render() {
         return (
             <main>
                 <section>
-                    {/* type = text, onChange = handleSearch method */}
-                    <input></input>
-                    {/* onClick = handleClick method  */}
-                    <button></button>
+                    <input type='text' onChange={this.handleSearch} />
+                    <button onClick={this.handleClick}>Search</button>
                     {/* onChange = handleSearchOrder method */}
-                    <select>
-                        <input key='ascending' value='ascending'>Ascending</input>
-                        <input key='descending' value='descending'>Descending</input>
+                    <select onChange={this.handleSearchOrder}>
+                        <option key='asc' value='asc'>Ascending</option>
+                        <option key='desc' value='desc'>Descending</option>
                     </select>
                 </section>
                 <PokeList

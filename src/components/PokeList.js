@@ -8,12 +8,13 @@ export default class PokeList extends Component {
             <section>
                 <ul className="poke-list">
                     {
-                        !isLoading
-                        ? <img className="loading-anim" src="" alt="loading img" />
-                        : dataArr.map((dataObj => {
+                        isLoading
+                        ? <h1>Loading...</h1>
+                        : 
+                        dataArr.map((dataObj => {
                             return(
                                 <li key={dataObj.id}>
-                                    {/* more data here */}
+                                    <img src={dataObj.url_image} alt={dataObj.id} />
                                 </li>
                             )
                         }))
