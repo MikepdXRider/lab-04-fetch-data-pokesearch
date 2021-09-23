@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PokeList from './PokeList.js'
+import request from 'superagent'
 
 export default class SearchPage extends Component {
     state = {
@@ -10,8 +11,14 @@ export default class SearchPage extends Component {
     }
 
     // handleClick Method
-        // call fetchData function
-        
+    handleClick = () => {
+        const searchQuery = this.state.searchQuery
+        const searchOrder = this.state.searchOrder
+
+        this.fetchSearch(searchQuery, searchOrder)
+    }
+
+
     // handleSearch Method
         // takes in e
         // updates searchOrder state to e.target.value
@@ -20,15 +27,31 @@ export default class SearchPage extends Component {
         // takes in e
         // updates searchOrder state to e.target.value
 
+        
     // componentDidMount method
-        // call fetchData function
+    componentDidMount = () => {
+        const searchQuery = this.state.searchQuery
+        const searchOrder = this.state.searchOrder
 
-    // fetchData async function
-        // takes searchQuery and searchOrder
+        this.fetchSearch(searchQuery, searchOrder)
+    }
+
+
+    // fetchSearch async function
+    // takes in searchQuery and searchOrder
+    fetchSearch = async (searchQuery, searchOrder) => {
         // updates isLoading state to true
+        this.setState({isLoading: true})
+
         // try to await a response on an endpoint request
+        const response = await request.get(/* endpoint here*/)
+
         // update dataArr state
+        this.setState({dataArr: [...response.body]})
+
         // update isLoading state to false
+        this.setState({isLoading: false})
+    }
     
     render() {
         return (
