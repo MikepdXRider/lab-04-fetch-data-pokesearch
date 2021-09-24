@@ -16,7 +16,9 @@ export default class SearchPage extends Component {
         isLoading: false,
         isShowing: true,
         translate: -85,
-        rotate: 180
+        rotate: 180,
+        bushClassName: 'header-img bush-start',
+        pikaClassName: 'header-img pika-start'
     }
 
     // handleClick Method used on button element
@@ -69,17 +71,23 @@ export default class SearchPage extends Component {
         this.rotateChevron()
     }
 
-
+    // show search section method used in isShowing method
     showSearchSection = () => {
         console.log('...is showing?', this.state.isShowing)
         !this.state.isShowing ? this.setState({translate: -80}) : this.setState({translate: -25})
         console.log('...translate state', this.state.translate)
     }
 
+    // rotate chevron method used in isShowing method
     rotateChevron = () => {
         !this.state.isShowing ? this.setState({rotate: 180}) : this.setState({rotate: 0})
     }
 
+    
+    pikaSurpriseAnim = () => {
+        this.setState({bushClassName: 'header-img bush-end'})
+        this.setState({pikaClassName: 'header-img pika-end'})
+    }
 
 
     // fetchSearch async function
@@ -105,7 +113,8 @@ export default class SearchPage extends Component {
             <>
                 <header>
                     <h1>POKEMON</h1>
-                    <img className='header-img' src='http://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png' alt='pikachu' />
+                    <img className={`${this.state.pikaClassName}`} src='http://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png' alt='pikachu' />
+                    <img onClick={this.pikaSurpriseAnim} className={`${this.state.bushClassName}`} src='bush.png' alt='bush' />
                 </header>
                 <main className='main-flex-cont'>
                     <section style={{transform: `translateY(${this.state.translate}px)`}} className="search-cont">
