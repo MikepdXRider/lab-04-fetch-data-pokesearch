@@ -83,7 +83,7 @@ export default class SearchPage extends Component {
         !this.state.isShowing ? this.setState({rotate: 180}) : this.setState({rotate: 0})
     }
 
-    
+    // pika surprise animation method used on bush image element
     pikaSurpriseAnim = () => {
         this.setState({bushClassName: 'header-img bush-end'})
         this.setState({pikaClassName: 'header-img pika-end'})
