@@ -95,7 +95,7 @@ export default class SearchPage extends Component {
         // updates isLoading state to true
         this.setState({isLoading: true})
 
-        const response = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?sort=${sortBy}&direction=${searchOrder}&pokemon=${searchQuery}`)
+        const response = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon=${searchQuery}&sort=${sortBy}&direction=${searchOrder}`)
             
         // update dataArr state
         this.setState({dataArr: [...response.body.results]})
