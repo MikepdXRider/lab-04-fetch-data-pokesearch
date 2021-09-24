@@ -13,10 +13,13 @@ export default class SearchPage extends Component {
         searchQuery: '',
         sortBy: '',
         searchOrder: 'asc',
-        isLoading: false
+        isLoading: false,
+        isShowing: true,
+        translate: -85,
+        rotate: 180
     }
 
-    // handleClick Method
+    // handleClick Method used on button element
     handleClick = () => {
         const searchQuery = this.state.searchQuery
         const searchOrder = this.state.searchOrder
@@ -25,7 +28,7 @@ export default class SearchPage extends Component {
     }
 
 
-    // handleSearch Method
+    // handleSearch Method used on input element
     // takes in e
     handleSearch = (e) =>{
         // updates searchOrder state to e.target.value
@@ -34,7 +37,7 @@ export default class SearchPage extends Component {
     }
 
 
-    // handleSearch Method
+    // handleSort Method for Sort component
     // takes in e
     handleSort = (e) =>{
         // updates searchOrder state to e.target.value
@@ -42,7 +45,7 @@ export default class SearchPage extends Component {
     }
     
     
-    // handleSearchOrder method
+    // handleSearchOrder method for SearchOrder component.
     // takes in e
     handleSearchOrder = (e) =>{
         // updates searchOrder state to e.target.value
@@ -59,8 +62,27 @@ export default class SearchPage extends Component {
     }
 
 
+    // isShowing method for chevron img element. 
+    isShowing = () => {
+        this.setState({isShowing: !this.state.isShowing})
+        this.showSearchSection()
+        this.rotateChevron()
+    }
+
+
+    showSearchSection = () => {
+        console.log('...is showing?', this.state.isShowing)
+        !this.state.isShowing ? this.setState({translate: -80}) : this.setState({translate: -25})
+        console.log('...translate state', this.state.translate)
+    }
+
+    rotateChevron = () => {
+        !this.state.isShowing ? this.setState({rotate: 180}) : this.setState({rotate: 0})
+    }
+
+
+
     // fetchSearch async function
-    // takes in searchQuery and searchOrder
     fetchSearch = async (sortBy , searchOrder, searchQuery) => {
         // updates isLoading state to true
         this.setState({isLoading: true})
@@ -86,7 +108,7 @@ export default class SearchPage extends Component {
                     <img className='header-img' src='http://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png' alt='pikachu' />
                 </header>
                 <main className='main-flex-cont'>
-                    <section className="search-cont">
+                    <section style={{transform: `translateY(${this.state.translate}px)`}} className="search-cont">
                         <div> 
                             <input type='text' onChange={this.handleSearch} />
                             <button onClick={this.handleClick}>Search</button>
@@ -101,7 +123,9 @@ export default class SearchPage extends Component {
                         handleSearchOrder = {this.handleSearchOrder}
                         />
 
+                        <img style={{transform: `rotate(${this.state.rotate}deg)`}}onClick={this.isShowing} className='chevron' src='chevron.png' alt='chevron'/>
                     </section>
+
                     <PokeList
                     dataArr = {this.state.dataArr} 
                     isLoading = {this.state.isLoading}
