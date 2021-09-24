@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PokeList from './PokeList.js'
 import request from 'superagent'
 import sortData from '../sortData.js'
+import Sort from './Sort.js'
+import SearchOrder from './SearchOrder.js'
 
 
 
@@ -63,7 +65,7 @@ export default class SearchPage extends Component {
         // updates isLoading state to true
         this.setState({isLoading: true})
 
-        const response = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon=${searchQuery}&sort=${sortBy}&direction=${searchOrder}&`)
+        const response = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?sort=${sortBy}&direction=${searchOrder}&pokemon=${searchQuery}`)
             
         // update dataArr state
         this.setState({dataArr: [...response.body.results]})
@@ -78,30 +80,34 @@ export default class SearchPage extends Component {
 
     render() {
         return (
-            <main>
-                <section>
+            <>
+                <header>
+                    <h1>POKEMON</h1>
+                    <img className='header-img' src='http://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png' alt='pikachu' />
+                </header>
+                <main className='main-flex-cont'>
+                    <section className="search-cont">
+                        <div> 
+                            <input type='text' onChange={this.handleSearch} />
+                            <button onClick={this.handleClick}>Search</button>
+                        </div>
+                        
+                        <Sort 
+                        sortData = {sortData}
+                        handleSort = {this.handleSort}
+                        />
 
-                    <div className="search-cont"> 
-                        <input type='text' onChange={this.handleSearch} />
-                        <button onClick={this.handleClick}>Search</button>
-                    </div>
-                        <span>Sort:</span>  
-                   <select onChange={this.handleSort}>
-                        {
-                            sortData.map((sortItem) => <option key={sortItem} value={sortItem}>{sortItem.toLocaleUpperCase()}</option>)
-                        }
-                    </select>
-                    <select onChange={this.handleSearchOrder}>
-                        <option key='asc' value='asc'>Ascending</option>
-                        <option key='desc' value='desc'>Descending</option>
-                    </select>
+                        <SearchOrder 
+                        handleSearchOrder = {this.handleSearchOrder}
+                        />
 
-                </section>
-                <PokeList
-                dataArr = {this.state.dataArr} 
-                isLoading = {this.state.isLoading}
-                />
-            </main>
+                    </section>
+                    <PokeList
+                    dataArr = {this.state.dataArr} 
+                    isLoading = {this.state.isLoading}
+                    />
+                </main>
+            </>
         )
     }
 }
