@@ -41,3 +41,16 @@
 /* .poke-list{
 
 } */
+
+img{
+  max-width: 300px;
+}
+
+.poke-item{
+  max-width: 300px;
+}
+
+.flex-cont{
+  display: flex;
+  justify-content: space-around;
+}
