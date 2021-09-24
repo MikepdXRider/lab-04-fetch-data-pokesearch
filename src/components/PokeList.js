@@ -14,12 +14,11 @@ export default class PokeList extends Component {
                             return(
                                 <li style={{backgroundColor: `${dataObj.color_1}`}} key={dataObj.id} className="poke-item" >
                                     <div className='flex-cont'>
-                                    <h3>{dataObj.pokemon}</h3>
-                                            <p>HP: {dataObj.hp}</p>
-
+                                        <h3>{dataObj.pokemon}</h3>
+                                        <p className='hp-text'>HP: {dataObj.hp}</p>
                                     </div>
                                         <div className='poke-item-img-cont flex-cont'>
-                                            <img classname="poke-item-img" src={dataObj.url_image} alt={dataObj.id} />
+                                            <img className="poke-item-img" src={dataObj.url_image} alt={dataObj.id} />
                                         </div>    
                                         <section className='poke-item-info flex-cont'>
                                         <div>
