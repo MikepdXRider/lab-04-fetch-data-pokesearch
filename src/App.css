@@ -137,7 +137,7 @@ header{
   position: absolute;
   width: 4%;
   /* transform: rotate(180deg); */
-  top: 60%;
+  top: 55%;
   cursor: pointer;
   transition: 0.5s linear;
 }
