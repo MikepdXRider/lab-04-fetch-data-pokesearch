@@ -34,7 +34,7 @@ export default class App extends React.Component {
               render={(routerProps) => <HomePage {...routerProps} />} 
             />          
             <Route 
-              path="/details-page:query" 
+              path="/details-page/:query" 
               exact
               render={(routerProps) => <DetailsPage {...routerProps} />} 
             />          

@@ -142,17 +142,24 @@ export default class SearchPage extends Component {
             <>
                 <header>
                     <h1>POKEMON</h1>
+
                     <img className={`${this.state.pikaClassName}`} src='http://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png' alt='pikachu' />
+
                     <img onClick={this.pikaSurpriseAnim} className={`${this.state.bushClassName}`} src='bush.png' alt='bush' />
+
                     <div className="nav-cont">
                         <NavLink activeClassName="active-link" to="/">
                             Home
                         </NavLink>
+
                         <NavLink activeClassName="active-link" to="/search-page">
                             SearchPage
                         </NavLink>
                     </div>
+
                 </header>
+
+
                 <main className='main-flex-cont'>
                     <section style={{transform: `translateY(${this.state.translate}px)`}} className="search-cont">
                         <div> 
@@ -172,9 +179,12 @@ export default class SearchPage extends Component {
                         <img style={{transform: `rotate(${this.state.rotate}deg)`}}onClick={this.isShowing} className='chevron' src='chevron.png' alt='chevron' />
 
                         {this.state.currentPage > 1 && <button onClick={this.decrementPage}>Last Page</button>}
+
                         <span>Current Page: {`${this.state.currentPage}`}</span>
+                        
                        {this.state.dataArr.length === 50 && <button onClick={this.incrementPage}>Next Page</button>}
                     </section>
+
 
                     <PokeList
                     dataArr = {this.state.dataArr} 
