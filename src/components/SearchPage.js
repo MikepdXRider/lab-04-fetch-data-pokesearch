@@ -22,76 +22,8 @@ export default class SearchPage extends Component {
         bushClassName: 'header-img bush-start',
         pikaClassName: 'header-img pika-start'
     }
-
-    // handleClick Method used on button element
-    handleClick = () => {
-        const searchQuery = this.state.searchQuery
-        const searchOrder = this.state.searchOrder
-        const sortBy = this.state.sortBy
-        this.fetchSearch(sortBy, searchOrder, searchQuery)
-    }
-
-
-    // handleSearch Method used on input element
-    // takes in e
-    handleSearch = (e) =>{
-        // updates searchOrder state to e.target.value
-        this.setState({searchQuery: e.target.value})
-        console.log(this.state.searchQuery)
-    }
-
-
-    // handleSort Method for Sort component
-    // takes in e
-    handleSort = (e) =>{
-        // updates searchOrder state to e.target.value
-        this.setState({sortBy: e.target.value})
-    }
     
     
-    // handleSearchOrder method for SearchOrder component.
-    // takes in e
-    handleSearchOrder = (e) =>{
-        // updates searchOrder state to e.target.value
-        this.setState({searchOrder: e.target.value})
-    }
-
-
-    // componentDidMount method
-    componentDidMount = () => {
-        const searchQuery = this.state.searchQuery
-        const searchOrder = this.state.searchOrder
-        const sortBy = this.state.sortBy
-        this.fetchSearch(sortBy, searchOrder, searchQuery)
-    }
-
-
-    // isShowing method for chevron img element. 
-    isShowing = () => {
-        this.setState({isShowing: !this.state.isShowing})
-        this.showSearchSection()
-        this.rotateChevron()
-    }
-
-    // show search section method used in isShowing method
-    showSearchSection = () => {
-        console.log('...is showing?', this.state.isShowing)
-        !this.state.isShowing ? this.setState({translate: -90}) : this.setState({translate: -25})
-        console.log('...translate state', this.state.translate)
-    }
-
-    // rotate chevron method used in isShowing method
-    rotateChevron = () => {
-        !this.state.isShowing ? this.setState({rotate: 180}) : this.setState({rotate: 0})
-    }
-
-    // pika surprise animation method used on bush image element
-    pikaSurpriseAnim = () => {
-        this.setState({bushClassName: 'header-img bush-end'})
-        this.setState({pikaClassName: 'header-img pika-end'})
-    }
-
-
     // fetchSearch async function
     fetchSearch = async (sortBy , searchOrder, searchQuery, currentPage) => {
         // updates isLoading state to true
@@ -108,6 +40,101 @@ export default class SearchPage extends Component {
         // console.log('dataArr state leaving function', this.state.dataArr)
         // console.log('searchOrder state leaving function', this.state.searchOrder)
     }
+    
+
+    // componentDidMount method
+    componentDidMount = () => {
+        const searchQuery = this.state.searchQuery
+        const searchOrder = this.state.searchOrder
+        const sortBy = this.state.sortBy
+        const pageNumber = this.state.currentPage
+        this.fetchSearch(sortBy, searchOrder, searchQuery, pageNumber)
+    }
+
+
+    // handleClick Method used on button element
+    handleClick = () => {
+        const searchQuery = this.state.searchQuery
+        const searchOrder = this.state.searchOrder
+        const sortBy = this.state.sortBy
+        const pageNumber = this.state.currentPage
+        this.fetchSearch(sortBy, searchOrder, searchQuery, pageNumber)
+    }
+
+
+    // handleSearch Method used on input element
+    // takes in e
+    handleSearch = (e) => {
+        // updates searchOrder state to e.target.value
+        this.setState({searchQuery: e.target.value})
+        console.log(this.state.searchQuery)
+    }
+
+
+    // handleSort Method for Sort component
+    // takes in e
+    handleSort = (e) => {
+        // updates searchOrder state to e.target.value
+        this.setState({sortBy: e.target.value})
+    }
+    
+    
+    // handleSearchOrder method for SearchOrder component.
+    // takes in e
+    handleSearchOrder = (e) => {
+        // updates searchOrder state to e.target.value
+        this.setState({searchOrder: e.target.value})
+    }
+
+
+    incrementPage = async () => {
+        await this.setState({currentPage: this.state.currentPage + 1})
+        const searchQuery = this.state.searchQuery
+        const searchOrder = this.state.searchOrder
+        const sortBy = this.state.sortBy
+        const pageNumber = this.state.currentPage
+        await this.fetchSearch(sortBy, searchOrder, searchQuery, pageNumber)
+    }
+
+    decrementPage = async () => {
+        await this.setState({currentPage: this.state.currentPage - 1})
+        const searchQuery = this.state.searchQuery
+        const searchOrder = this.state.searchOrder
+        const sortBy = this.state.sortBy
+        const pageNumber = this.state.currentPage
+        await this.fetchSearch(sortBy, searchOrder, searchQuery, pageNumber)
+    }
+
+
+// 🏃‍♀️🏃‍♀️ Animation Methods 
+    // isShowing method for chevron img element. 
+    isShowing = () => {
+        this.setState({isShowing: !this.state.isShowing})
+        this.showSearchSection()
+        this.rotateChevron()
+    }
+
+
+    // show search section method used in isShowing method
+    showSearchSection = () => {
+        console.log('...is showing?', this.state.isShowing)
+        !this.state.isShowing ? this.setState({translate: -90}) : this.setState({translate: -25})
+        console.log('...translate state', this.state.translate)
+    }
+
+
+    // rotate chevron method used in isShowing method
+    rotateChevron = () => {
+        !this.state.isShowing ? this.setState({rotate: 180}) : this.setState({rotate: 0})
+    }
+
+
+    // pika surprise animation method used on bush image element
+    pikaSurpriseAnim = () => {
+        this.setState({bushClassName: 'header-img bush-end'})
+        this.setState({pikaClassName: 'header-img pika-end'})
+    }
+// 🏃‍♀️🏃‍♀️
 
 
     render() {
@@ -144,8 +171,9 @@ export default class SearchPage extends Component {
 
                         <img style={{transform: `rotate(${this.state.rotate}deg)`}}onClick={this.isShowing} className='chevron' src='chevron.png' alt='chevron' />
 
-                        <button onClick={this.decrementPage}>Last Page</button>
-                        <button onClick={this.increasePage}>Next Page</button>
+                        {this.state.currentPage > 1 && <button onClick={this.decrementPage}>Last Page</button>}
+                        <span>Current Page: {`${this.state.currentPage}`}</span>
+                       {this.state.dataArr.length === 50 && <button onClick={this.incrementPage}>Next Page</button>}
                     </section>
 
                     <PokeList
