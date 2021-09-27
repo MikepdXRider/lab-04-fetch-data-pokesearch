@@ -13,8 +13,8 @@ export default class PokeList extends Component {
                         ? <img src='https://img.pikbest.com/58pic/35/39/61/62K58PICb88i68HEwVnm5_PIC2018.gif!w340' alt='loading...'/>
                         : dataArr.map((dataObj => {
                             return(
-                                <li style={{backgroundColor: `${dataObj.color_1}`}} key={dataObj.id} className="poke-item" >
-                                    <Link to={`/details-page:${dataObj.id}`}>
+                                <Link to={`/details-page:${dataObj.id}`}>
+                                    <li style={{backgroundColor: `${dataObj.color_1}`}} key={dataObj.id} className="poke-item" >
                                         <div className='flex-cont'>
                                             <h3>{dataObj.pokemon}</h3>
                                             <p className='hp-text'>HP: {dataObj.hp}</p>
@@ -34,8 +34,8 @@ export default class PokeList extends Component {
                                                 <p>Defence: {dataObj.defense}</p>
                                             </div>
                                         </section>
-                                    </Link>
-                                </li>
+                                    </li>
+                                </Link>
                             )
                         }))
                     }

@@ -14,6 +14,7 @@ export default class SearchPage extends Component {
         searchQuery: '',
         sortBy: '',
         searchOrder: 'asc',
+        currentPage: 1,
         isLoading: false,
         isShowing: true,
         translate: -85,
@@ -92,11 +93,11 @@ export default class SearchPage extends Component {
 
 
     // fetchSearch async function
-    fetchSearch = async (sortBy , searchOrder, searchQuery) => {
+    fetchSearch = async (sortBy , searchOrder, searchQuery, currentPage) => {
         // updates isLoading state to true
         this.setState({isLoading: true})
 
-        const response = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon=${searchQuery}&sort=${sortBy}&direction=${searchOrder}`)
+        const response = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon=${searchQuery}&sort=${sortBy}&direction=${searchOrder}&page=${currentPage}&perPage=50`)
             
         // update dataArr state
         this.setState({dataArr: [...response.body.results]})
@@ -141,7 +142,10 @@ export default class SearchPage extends Component {
                         handleSearchOrder = {this.handleSearchOrder}
                         />
 
-                        <img style={{transform: `rotate(${this.state.rotate}deg)`}}onClick={this.isShowing} className='chevron' src='chevron.png' alt='chevron'/>
+                        <img style={{transform: `rotate(${this.state.rotate}deg)`}}onClick={this.isShowing} className='chevron' src='chevron.png' alt='chevron' />
+
+                        <button onClick={this.decrementPage}>Last Page</button>
+                        <button onClick={this.increasePage}>Next Page</button>
                     </section>
 
                     <PokeList
