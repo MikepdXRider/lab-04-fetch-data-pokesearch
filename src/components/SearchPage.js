@@ -4,6 +4,7 @@ import request from 'superagent'
 import sortData from '../sortData.js'
 import Sort from './Sort.js'
 import SearchOrder from './SearchOrder.js'
+import { NavLink } from 'react-router-dom'
 
 
 
@@ -74,7 +75,7 @@ export default class SearchPage extends Component {
     // show search section method used in isShowing method
     showSearchSection = () => {
         console.log('...is showing?', this.state.isShowing)
-        !this.state.isShowing ? this.setState({translate: -80}) : this.setState({translate: -25})
+        !this.state.isShowing ? this.setState({translate: -90}) : this.setState({translate: -25})
         console.log('...translate state', this.state.translate)
     }
 
@@ -115,6 +116,14 @@ export default class SearchPage extends Component {
                     <h1>POKEMON</h1>
                     <img className={`${this.state.pikaClassName}`} src='http://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png' alt='pikachu' />
                     <img onClick={this.pikaSurpriseAnim} className={`${this.state.bushClassName}`} src='bush.png' alt='bush' />
+                    <div className="nav-cont">
+                        <NavLink activeClassName="active-link" to="/">
+                            Home
+                        </NavLink>
+                        <NavLink activeClassName="active-link" to="/search-page">
+                            SearchPage
+                        </NavLink>
+                    </div>
                 </header>
                 <main className='main-flex-cont'>
                     <section style={{transform: `translateY(${this.state.translate}px)`}} className="search-cont">

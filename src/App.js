@@ -9,6 +9,7 @@ import {
 import SearchPage from './components/SearchPage.js'
 import HomePage from './components/HomePage.js';
 import DetailsPage from './components/DetailsPage.js';
+import './App.css'  
 
 // Params are placeholders in the URL that begin
 // with a colon, like the `:id` param defined in
