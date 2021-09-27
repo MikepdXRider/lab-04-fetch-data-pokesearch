@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export default class PokeList extends Component {
     render() {
@@ -13,25 +14,27 @@ export default class PokeList extends Component {
                         : dataArr.map((dataObj => {
                             return(
                                 <li style={{backgroundColor: `${dataObj.color_1}`}} key={dataObj.id} className="poke-item" >
-                                    <div className='flex-cont'>
-                                        <h3>{dataObj.pokemon}</h3>
-                                        <p className='hp-text'>HP: {dataObj.hp}</p>
-                                    </div>
-                                        <div className='poke-item-img-cont flex-cont'>
-                                            <img className="poke-item-img" src={dataObj.url_image} alt={dataObj.id} />
-                                        </div>    
+                                    <Link to={`/details-page:${dataObj.id}`}>
+                                        <div className='flex-cont'>
+                                            <h3>{dataObj.pokemon}</h3>
+                                            <p className='hp-text'>HP: {dataObj.hp}</p>
+                                        </div>
+                                            <div className='poke-item-img-cont flex-cont'>
+                                                <img className="poke-item-img" src={dataObj.url_image} alt={dataObj.id} />
+                                            </div>    
                                         <section className='poke-item-info flex-cont'>
-                                        <div>
-                                            <p>Ability: {dataObj.ability_1}</p>
-                                            <p>Hidden-Ability: {dataObj.ability_hidden}</p>
-                                            <p><span>Type:</span> {dataObj.type_1}</p>
-                                        </div>
-                                        <div>
-                                            <p>Attack: {dataObj.attack}</p>
-                                            <p>Speed: {dataObj.speed}</p>
-                                            <p>Defence: {dataObj.defense}</p>
-                                        </div>
-                                    </section>
+                                            <div>
+                                                <p>Ability: {dataObj.ability_1}</p>
+                                                <p>Hidden-Ability: {dataObj.ability_hidden}</p>
+                                                <p><span>Type:</span> {dataObj.type_1}</p>
+                                            </div>
+                                            <div>
+                                                <p>Attack: {dataObj.attack}</p>
+                                                <p>Speed: {dataObj.speed}</p>
+                                                <p>Defence: {dataObj.defense}</p>
+                                            </div>
+                                        </section>
+                                    </Link>
                                 </li>
                             )
                         }))
