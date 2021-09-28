@@ -48,38 +48,38 @@ export default class DetailsPage extends Component {
                 <main>
                 <section style={{transform: `translateY(${-80}px)`}}className="search-cont">
                 </section>
-                    <ul className="poke-list">
                         {
                             this.state.isLoading
-                            ? <img src='https://img.pikbest.com/58pic/35/39/61/62K58PICb88i68HEwVnm5_PIC2018.gif!w340' alt='loading...'/>
-                            : (
-                                <li style={{backgroundColor: `${currentDataObj.color_1}`}} key={currentDataObj.id} className="poke-item" >
-
-                                            <h3>{currentDataObj.pokemon}</h3>
-
-                                            <p className='hp-text'>HP: {currentDataObj.hp}</p>
-                                        
-                                            <div className='poke-item-img-cont flex-cont'>
-                                                <img className="poke-item-img" src={currentDataObj.url_image} alt={currentDataObj.id} />
-                                            </div>   
-
-                                            <div className='poke-item-yellow-banner'>
-                                                <p>{currentDataObj.egg_group_2} pokemon / Height: {currentDataObj.height}"/ Weight: {currentDataObj.weight}lbs</p>
-                                            </div> 
-
-                                            <p className='poke-item-ability-text'><b>{currentDataObj.ability_1}</b> dolor sit amet, consectetur adipiscing elit, sed do.</p>
-
-                                            <p className= 'poke-item-attack-damage'>{currentDataObj.attack}</p>
-
-                                            <div className='poke-item-design-el-cont'>
-                                                <div className="design-el design-el-1"></div>
-                                                <div className="design-el design-el-2"></div>
-                                                <div className="design-el design-el-3"></div>
-                                            </div>
-                                    </li>
+                            ?  <img src='https://img.pikbest.com/58pic/35/39/61/62K58PICb88i68HEwVnm5_PIC2018.gif!w340' alt='loading...'/>
+                            :   (
+                                    <div className='detail-cont'>
+                                        <img src={currentDataObj.url_image} alt={currentDataObj.id} />
+                                        <section className='data-display'>
+                                            <p>pokemon: {currentDataObj.pokemon}</p>
+                                            <p>base_experience: {currentDataObj.base_experience}xp</p>
+                                            <p>type_1: {currentDataObj.type_1}</p>
+                                            <p>type_2: {currentDataObj.type_2}</p>
+                                            <p>hp: {currentDataObj.hp}"</p>
+                                            <p>height: {currentDataObj.height}"</p>
+                                            <p>weight: {currentDataObj.weight}lbs</p>
+                                            <p>attack: {currentDataObj.attack}</p>
+                                            <p>defence: {currentDataObj.defence}</p>
+                                            <p>special_attack: {currentDataObj.special_attack}</p>
+                                            <p>special_defence: {currentDataObj.special_defence}</p>
+                                            <p>speed: {currentDataObj.speed}</p>
+                                            <p>ability_1: {currentDataObj.ability_1}</p>
+                                            <p>ability_2: {currentDataObj.ability_2}</p>
+                                            <p>ability_hidden: {currentDataObj.ability_hidden}</p>
+                                            <p>egg_group_1: {currentDataObj.egg_group_1}</p>
+                                            <p>egg_group_2: {currentDataObj.egg_group_2}</p>
+                                            <p>pokebase: {currentDataObj.pokebase}</p>
+                                            <p>pokedex: <a href={currentDataObj.pokedex}>{currentDataObj.pokedex}</a></p>
+                                            <br />
+                                            <p>[ash]pokedex(v.2.4.0)... <span className='text-indicator-anim'>|</span></p>
+                                        </section>
+                                    </div>
                                 )
                             }
-                    </ul>
                 </main>
             </>
         )
