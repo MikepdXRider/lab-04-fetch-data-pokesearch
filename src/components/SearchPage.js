@@ -181,7 +181,7 @@ export default class SearchPage extends Component {
                         {this.state.currentPage > 1 && <button onClick={this.decrementPage}>Last Page</button>}
 
                         <span>Current Page: {`${this.state.currentPage}`}</span>
-                        
+
                        {this.state.dataArr.length === 50 && <button onClick={this.incrementPage}>Next Page</button>}
                     </section>
 

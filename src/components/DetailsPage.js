@@ -35,7 +35,7 @@ export default class DetailsPage extends Component {
         return (
             <>
                 <header>
-                    <h1>Welcome to details...</h1>
+                    <h1>{currentDataObj.pokemon}</h1>
                     <div className="nav-cont">
                         <NavLink activeClassName="active-link" to="/">
                             Home
@@ -45,7 +45,9 @@ export default class DetailsPage extends Component {
                         </NavLink>
                     </div>
                 </header>
-                <main>s
+                <main>
+                <section style={{transform: `translateY(${-80}px)`}}className="search-cont">
+                </section>
                     <ul className="poke-list">
                         {
                             this.state.isLoading
@@ -56,9 +58,9 @@ export default class DetailsPage extends Component {
                                         <h3>{currentDataObj.pokemon}</h3>
                                         <p className='hp-text'>HP: {currentDataObj.hp}</p>
                                     </div>
-                                        <div className='poke-item-img-cont flex-cont'>
-                                            <img className="poke-item-img" src={currentDataObj.url_image} alt={currentDataObj.id} />
-                                        </div>    
+                                    <div className='poke-item-img-cont flex-cont'>
+                                        <img className="poke-item-img" src={currentDataObj.url_image} alt={currentDataObj.id} />
+                                    </div>    
                                     <section className='poke-item-info flex-cont'>
                                         <div>
                                             <p>Ability: {currentDataObj.ability_1}</p>
