@@ -303,13 +303,11 @@ button{
 }
 
 .text-indicator-anim{
-  animation: blank 1s infinite;
+  animation: indicator-blink 1s infinite;
 }
 
-@keyframes blank {
+@keyframes indicator-blink {
   0%{visibility: hidden}
-
   50%{visibility: hidden}
-
-  100%{visibility: visible}
+  95%{visibility: visible}
 }
