@@ -53,7 +53,7 @@ export default class DetailsPage extends Component {
                             ?  <img src='https://img.pikbest.com/58pic/35/39/61/62K58PICb88i68HEwVnm5_PIC2018.gif!w340' alt='loading...'/>
                             :   (
                                     <div className='detail-cont'>
-                                        <img src={currentDataObj.url_image} alt={currentDataObj.id} />
+                                        <img className='poke-anim' src={currentDataObj.url_image} alt={currentDataObj.id} />
                                         <section className='data-display'>
                                             <p>pokemon: {currentDataObj.pokemon}</p>
                                             <p>base_experience: {currentDataObj.base_experience}xp</p>

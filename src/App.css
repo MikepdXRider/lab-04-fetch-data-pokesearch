@@ -311,3 +311,19 @@ button{
   50%{visibility: hidden}
   95%{visibility: visible}
 }
+
+.poke-anim{
+  animation: excited 5s infinite;
+}
+
+@keyframes excited {
+  80%{
+    transform: rotatey(0)
+  }
+  90%{
+    transform: rotatey(180deg)
+  }
+  100%{
+    transform: rotatey(0)
+  }
+}
