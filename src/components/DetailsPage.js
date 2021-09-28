@@ -63,9 +63,9 @@ export default class DetailsPage extends Component {
                                             <p>height: {currentDataObj.height}"</p>
                                             <p>weight: {currentDataObj.weight}lbs</p>
                                             <p>attack: {currentDataObj.attack}</p>
-                                            <p>defence: {currentDataObj.defence}</p>
+                                            <p>defense: {currentDataObj.defense}</p>
                                             <p>special_attack: {currentDataObj.special_attack}</p>
-                                            <p>special_defence: {currentDataObj.special_defence}</p>
+                                            <p>special_defense: {currentDataObj.special_defense}</p>
                                             <p>speed: {currentDataObj.speed}</p>
                                             <p>ability_1: {currentDataObj.ability_1}</p>
                                             <p>ability_2: {currentDataObj.ability_2}</p>
