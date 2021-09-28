@@ -153,20 +153,101 @@ li{
 }
 
 .poke-item{
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  /* flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-around; */
+  grid-template-rows: repeat(24, 1fr);
+  grid-template-columns: repeat(13, 1fr);
   max-width: 300px;
   height: 332.6px;
   width: 238.1px;
 }
 
+.poke-item h3{
+  grid-row: 2 / 3;
+  grid-column: 2 / 11;
+  font-size: 0.8rem;
+  align-self: end;
+}
+
+.hp-text{
+  grid-row: 2 / 3;
+  grid-column: 10 / 13;
+  color: red;
+  font-weight: bolder;
+  align-self: end;
+}
+
 .poke-item-img-cont{
+  grid-row: 3 / 15;
+  grid-column: 2 / 23;
   border: 5px solid rgb(252,199,39);
   box-shadow: 2px 5px 10px black;
-  width: 85%;
+  width: 87%;
   background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(192,215,242,1) 32%, rgba(215,230,247,1) 71%, rgba(148,187,233,1) 100%);
+}
+
+.poke-item-yellow-banner{
+  grid-row: 15 / 16;
+  grid-column: 3 / -3;
+  background-color: rgb(252,199,39);
+  margin-top: 2px;
+  font-size: 0.4rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.poke-item-ability-text{
+  grid-row: 17 / 21;
+  grid-column: 4 / -4;
+  font-size: 0.7rem;
+}
+
+.poke-item-attack-damage{
+  grid-row: 18 / 20;
+  grid-column: -4 / -2;
+}
+
+.poke-item-design-el-cont{
+  grid-row: 22 / 23;
+  grid-column: 2 / -2;
+  border-top: 1px solid black;
+  display: flex;
+  justify-content: space-around;
+}
+
+.design-el{
+  margin-top: 2px;
+  background-color: rgb(151, 93, 93);
+  height: 80%;
+  width: 5%;
+  border-radius: 10px;
+}
+
+.design-el-1{
+  border: 2px solid rgb(253, 62, 62);
+  background-color: rgb(107, 88, 88);
+}
+
+.design-el-2{
+  border: 2px solid green;
+  background-color: rgb(255, 0, 200);
+}
+
+.design-el-3{
+  border: 2px solid rgb(206, 206, 206);
+  background-color: rgb(59, 59, 59);
+}
+
+ul a{
+  text-decoration: none;
+  color: black;
+}
+
+ul a:hover{
+  transform: translateY(-10px);
+  box-shadow: 5px 5px 5px lightgrey;
 }
 
 li img{
@@ -182,8 +263,17 @@ button{
   justify-content: space-around;
 }
 
-.hp-text{
-  color: red;
-  font-weight: bolder;
+
+.active-link{
+  color: yellow;
 }
 
+.nav-cont{
+  font-size: 1.5rem;
+  position: absolute;
+  top: 80%;
+}
+
+.nav-cont a{
+  margin: 10px;
+}

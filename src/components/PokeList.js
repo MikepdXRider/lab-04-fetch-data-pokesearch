@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export default class PokeList extends Component {
     render() {
@@ -12,27 +13,32 @@ export default class PokeList extends Component {
                         ? <img src='https://img.pikbest.com/58pic/35/39/61/62K58PICb88i68HEwVnm5_PIC2018.gif!w340' alt='loading...'/>
                         : dataArr.map((dataObj => {
                             return(
-                                <li style={{backgroundColor: `${dataObj.color_1}`}} key={dataObj.id} className="poke-item" >
-                                    <div className='flex-cont'>
-                                        <h3>{dataObj.pokemon}</h3>
-                                        <p className='hp-text'>HP: {dataObj.hp}</p>
-                                    </div>
-                                        <div className='poke-item-img-cont flex-cont'>
-                                            <img className="poke-item-img" src={dataObj.url_image} alt={dataObj.id} />
-                                        </div>    
-                                        <section className='poke-item-info flex-cont'>
-                                        <div>
-                                            <p>Ability: {dataObj.ability_1}</p>
-                                            <p>Hidden-Ability: {dataObj.ability_hidden}</p>
-                                            <p><span>Type:</span> {dataObj.type_1}</p>
-                                        </div>
-                                        <div>
-                                            <p>Attack: {dataObj.attack}</p>
-                                            <p>Speed: {dataObj.speed}</p>
-                                            <p>Defence: {dataObj.defense}</p>
-                                        </div>
-                                    </section>
-                                </li>
+                                <Link to={`/details-page/${dataObj._id}`}>
+                                    <li style={{backgroundColor: `${dataObj.color_1}`}} key={dataObj.id} className="poke-item" >
+
+                                            <h3>{dataObj.pokemon.toUpperCase()}</h3>
+
+                                            <p className='hp-text'>HP: {dataObj.hp}</p>
+                                        
+                                            <div className='poke-item-img-cont flex-cont'>
+                                                <img className="poke-item-img" src={dataObj.url_image} alt={dataObj.id} />
+                                            </div>   
+
+                                            <div className='poke-item-yellow-banner'>
+                                                <p>{dataObj.egg_group_2} pokemon / Height: {dataObj.height}"/ Weight: {dataObj.weight}lbs</p>
+                                            </div> 
+
+                                            <p className='poke-item-ability-text'><b>{dataObj.ability_1.toUpperCase()}</b> dolor sit amet, consectetur adipiscing elit, sed do.</p>
+
+                                            <p className= 'poke-item-attack-damage'>{dataObj.attack}</p>
+
+                                            <div className='poke-item-design-el-cont'>
+                                                <div className="design-el design-el-1"></div>
+                                                <div className="design-el design-el-2"></div>
+                                                <div className="design-el design-el-3"></div>
+                                            </div>
+                                    </li>
+                                </Link>
                             )
                         }))
                     }
