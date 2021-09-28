@@ -277,3 +277,53 @@ button{
 .nav-cont a{
   margin: 10px;
 }
+
+
+/* details page */
+.detail-cont{
+  display:flex;
+  justify-content: space-around;
+}
+
+.data-display{
+  width: 40%;
+  background-color: rgb(51, 51, 51);
+  border-radius: 25px;
+  border: 10px solid rgb(97,207,66);
+  color: rgb(97,207,66);
+}   
+
+.data-display a{
+  text-decoration: none;
+  color: rgb(97,207,66);
+}
+
+.data-display p{
+  margin-left: 10px;
+}
+
+.text-indicator-anim{
+  animation: indicator-blink 1s infinite;
+}
+
+@keyframes indicator-blink {
+  0%{visibility: hidden}
+  50%{visibility: hidden}
+  95%{visibility: visible}
+}
+
+.poke-anim{
+  animation: excited 5s infinite;
+}
+
+@keyframes excited {
+  80%{
+    transform: rotatey(0)
+  }
+  90%{
+    transform: rotatey(180deg)
+  }
+  100%{
+    transform: rotatey(0)
+  }
+}
