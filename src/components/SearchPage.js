@@ -44,20 +44,14 @@ export default class SearchPage extends Component {
 
     // componentDidMount method
     componentDidMount = () => {
-        const searchQuery = this.state.searchQuery
-        const searchOrder = this.state.searchOrder
-        const sortBy = this.state.sortBy
-        const pageNumber = this.state.currentPage
+        const { sortBy, searchOrder, searchQuery, pageNumber } = this.state
         this.fetchSearch(sortBy, searchOrder, searchQuery, pageNumber)
     }
 
 
     // handleClick Method used on button element
     handleClick = () => {
-        const searchQuery = this.state.searchQuery
-        const searchOrder = this.state.searchOrder
-        const sortBy = this.state.sortBy
-        const pageNumber = this.state.currentPage
+        const { sortBy, searchOrder, searchQuery, pageNumber } = this.state
         this.fetchSearch(sortBy, searchOrder, searchQuery, pageNumber)
     }
 
@@ -89,19 +83,13 @@ export default class SearchPage extends Component {
 
     incrementPage = async () => {
         await this.setState({currentPage: this.state.currentPage + 1})
-        const searchQuery = this.state.searchQuery
-        const searchOrder = this.state.searchOrder
-        const sortBy = this.state.sortBy
-        const pageNumber = this.state.currentPage
+        const { sortBy, searchOrder, searchQuery, pageNumber } = this.state
         await this.fetchSearch(sortBy, searchOrder, searchQuery, pageNumber)
     }
 
     decrementPage = async () => {
         await this.setState({currentPage: this.state.currentPage - 1})
-        const searchQuery = this.state.searchQuery
-        const searchOrder = this.state.searchOrder
-        const sortBy = this.state.sortBy
-        const pageNumber = this.state.currentPage
+        const { sortBy, searchOrder, searchQuery, pageNumber } = this.state
         await this.fetchSearch(sortBy, searchOrder, searchQuery, pageNumber)
     }
 
